@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.roomdemo.ui.theme.RoomDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,4 +36,18 @@ fun ScreenSetup(modifier: Modifier = Modifier) {
 }
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
+}
+@Entity(tableName = "products")
+class Product {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "productId")
+    var id: Int = 0
+    @ColumnInfo(name = "productName")
+    var productName: String = ""
+    var quantity: Int = 0
+    constructor()
+    constructor(productname: String, quantity: Int) {
+        this.productName = productname
+        this.quantity = quantity
+    }
 }
